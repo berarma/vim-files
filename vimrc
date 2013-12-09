@@ -111,7 +111,7 @@ set visualbell
 set t_vb=
 
 " Enable use of the mouse for all modes
-set mouse=a
+" set mouse=a
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
@@ -155,7 +155,7 @@ map Y y$
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
-nnoremap <C-L> :nohl<CR><C-L>
+" nnoremap <C-L> :nohl<CR><C-L>
 
 
 "------------------------------------------------------------
@@ -166,21 +166,20 @@ source ~/.vim/bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 "
 " Custom Vim settings
+let mapleader=','
 set t_Co=256
-set background=dark
 colorscheme desert256
-set list listchars=trail:·,tab:│:,eol:.
-highlight SpecialKey ctermfg=240 ctermbg=NONE
-autocmd FileType php set keywordprg=pman
+set list listchars=tab:▸·,eol:.,trail:·
+highlight SpecialKey ctermfg=239 ctermbg=NONE guifg=gray30 guibg=NONE
 set noshowmode
 set path=
 set incsearch
 set formatoptions-=r
 set formatoptions-=o
-let g:netrw_liststyle = 3
 set tw=79
 set cc=+1
 set sessionoptions=blank,buffers,folds,help,tabpages,winsize
+autocmd FileType php set keywordprg=pman
 "
 " Remap keys for split window ease of use.
 nmap <C-j> <C-W>j
@@ -189,14 +188,11 @@ nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 "
 " Plugin settings
+let g:netrw_liststyle = 3
 let g:indentLine_char = '│'
-let g:indentLine_color_term = 240
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_php_checkers=['php', 'phpcs']
-let g:syntastic_php_phpcs_args="-i CakePHP"
-let g:syntastic_css_phpcs_args="-i CakePHP"
+let g:syntastic_php_checkers=['php']
 let g:syntastic_check_on_open = 1
-" let g:syntastic_auto_jump = 1
 let g:airline#extensions#tabline#enabled = 1
 nmap <F8> :TagbarToggle<CR>
 "
