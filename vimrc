@@ -155,7 +155,7 @@ map Y y$
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
-" nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <C-L> :nohl<CR><C-L>
 
 
 "------------------------------------------------------------
@@ -166,7 +166,6 @@ source ~/.vim/bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 "
 " Custom Vim settings
-let mapleader=','
 set t_Co=256
 colorscheme desert256
 set list listchars=tab:▸·,eol:.,trail:·
@@ -180,12 +179,12 @@ set tw=79
 set cc=+1
 set sessionoptions=blank,buffers,folds,help,tabpages,winsize
 autocmd FileType php set keywordprg=pman
+set guifont=Terminus
+set linespace=2
 "
-" Remap keys for split window ease of use.
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+" Buffer navigation
+nmap <F5> :bp<CR>
+nmap <F6> :bn<CR>
 "
 " Plugin settings
 let g:netrw_liststyle = 3
