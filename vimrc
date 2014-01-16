@@ -171,10 +171,11 @@ colorscheme desert256
 set list listchars=tab:▸·,eol:.,trail:·
 highlight SpecialKey ctermfg=239 ctermbg=NONE guifg=gray30 guibg=NONE
 set noshowmode
-set path=
+set path=.,,
 set incsearch
 set formatoptions-=r
 set formatoptions-=o
+set formatoptions-=t
 set tw=79
 set cc=+1
 set sessionoptions=blank,buffers,folds,help,tabpages,winsize
@@ -186,13 +187,25 @@ set linespace=2
 nmap <F5> :bp<CR>
 nmap <F6> :bn<CR>
 "
+" Keep window position when switching buffers
+" http://stackoverflow.com/questions/4251533/vim-keep-window-position-when-switching-buffers
+if v:version >= 700
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+endif
+"
 " Plugin settings
 let g:netrw_liststyle = 3
+let g:netrw_list_hide='\~$,\(^\|\s\s\)\zs\.\S\+'
 let g:indentLine_char = '│'
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_php_checkers=['php']
 let g:syntastic_check_on_open = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:tagbar_type_php  = {
+			\ 'ctagstype' : 'php',
+			\ 'kinds'     : [ 'i:interfaces', 'c:classes', 'd:constant definitions', 'f:functions', 'j:javascript functions:1' ]
+			\ }
 nmap <F8> :TagbarToggle<CR>
 "
 " Autosave/load Sessions
@@ -227,3 +240,8 @@ endfunction
 command CreateSession call CreateSession()
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call UpdateSession()
+"
+" Load .vimrc.local
+if filereadable(glob("~/.vimrc.local")) 
+	source ~/.vimrc.local
+endif
