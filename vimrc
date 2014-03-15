@@ -197,6 +197,7 @@ endif
 " Plugin settings
 let g:netrw_liststyle = 3
 let g:netrw_list_hide='\~$,\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_sort_options="i"
 let g:indentLine_char = '│'
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_php_checkers=['php']
