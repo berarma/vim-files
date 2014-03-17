@@ -155,7 +155,7 @@ map Y y$
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
-nnoremap <C-L> :nohl<CR><C-L>
+" nnoremap <C-L> :nohl<CR><C-L>
 
 
 "------------------------------------------------------------
@@ -182,6 +182,7 @@ set sessionoptions=blank,buffers,folds,help,tabpages,winsize
 autocmd FileType php set keywordprg=pman
 set guifont=Terminus
 set linespace=2
+set lazyredraw
 "
 " Buffer navigation
 nmap <F5> :bp<CR>
