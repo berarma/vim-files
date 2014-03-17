@@ -207,6 +207,8 @@ let g:tagbar_type_php  = {
 			\ 'ctagstype' : 'php',
 			\ 'kinds'     : [ 'i:interfaces', 'c:classes', 'd:constant definitions', 'f:functions', 'j:javascript functions:1' ]
 			\ }
+let g:ackhighlight = 1
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 nmap <F8> :TagbarToggle<CR>
 "
 " Autosave/load Sessions
