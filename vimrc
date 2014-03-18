@@ -165,24 +165,58 @@ map Y y$
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 "
-" Custom Vim settings
+" Set 256 color mode
 set t_Co=256
+"
+" Set colorscheme
 colorscheme desert256
+"
+" Display custom space and newline chars
 set list listchars=tab:▸·,eol:.,trail:·
-highlight SpecialKey ctermfg=239 ctermbg=NONE guifg=gray30 guibg=NONE
+"
+" Set color for special chars
+hi SpecialKey ctermfg=239 ctermbg=NONE guifg=gray30 guibg=NONE
+"
+" Highlight the current line number
+hi CursorLineNR cterm=bold
+"
+" Don't show mode in last line
 set noshowmode
+" 
+" Remove extra directories from file search path
 set path=.,,
+"
+" Incremental searches
 set incsearch
+"
+" Don't autowrap, don't put commend leader automatically
 set formatoptions-=r
 set formatoptions-=o
 set formatoptions-=t
-set tw=79
-set cc=+1
+"
+" Set text width
+" set tw=79
+"
+" Set color column marker
+" set cc=+1
+"
+" Change what's saved in sessions
 set sessionoptions=blank,buffers,folds,help,tabpages,winsize
-autocmd FileType php set keywordprg=pman
+"
+" Set help command for PHP files
+" autocmd FileType php set keywordprg=pman
+"
+" Set font for gui version
 set guifont=Terminus
+"
+" Set space between lines in gui version
 set linespace=2
+"
+" Don't redraw screen when running macros
 set lazyredraw
+"
+" Set relative line numbering
+set rnu
 "
 " Buffer navigation
 nmap <F5> :bp<CR>
@@ -190,27 +224,51 @@ nmap <F6> :bn<CR>
 "
 " Keep window position when switching buffers
 " http://stackoverflow.com/questions/4251533/vim-keep-window-position-when-switching-buffers
-if v:version >= 700
-  au BufLeave * let b:winview = winsaveview()
-  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-endif
+au BufLeave * let b:winview = winsaveview()
+au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 "
-" Plugin settings
+" Netrw: tree style list
 let g:netrw_liststyle = 3
+"
+" Netrw: Hide dot files
 let g:netrw_list_hide='\~$,\(^\|\s\s\)\zs\.\S\+'
+"
+" Netrw: Case-insensitive sort
 let g:netrw_sort_options="i"
+"
+" indentLine: indent marker char
 let g:indentLine_char = '│'
+"
+" Syntastic: check syntax automatically
 let g:syntastic_always_populate_loc_list=1
+"
+" Syntastic: Set PHP checker
 let g:syntastic_php_checkers=['php']
+"
+" Syntastic: Check syntax when opening files
 let g:syntastic_check_on_open = 1
+"
+" Airline:
 let g:airline#extensions#tabline#enabled = 1
+"
+" Tagbar: don't show variables
 let g:tagbar_type_php  = {
-			\ 'ctagstype' : 'php',
-			\ 'kinds'     : [ 'i:interfaces', 'c:classes', 'd:constant definitions', 'f:functions', 'j:javascript functions:1' ]
-			\ }
-let g:ackhighlight = 1
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+      \ 'ctagstype' : 'php',
+      \ 'kinds'     : [ 'i:interfaces', 'c:classes', 'd:constant definitions', 'f:functions', 'j:javascript functions:1' ]
+      \ }
+"
+" Tagbar: F8 toggles tagbar
 nmap <F8> :TagbarToggle<CR>
+"
+" Ack: highlight search term
+let g:ackhighlight = 1
+"
+" ctrlp: faster file reading
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+elseif executable('ack-grep')
+  let g:ctrlp_user_command = 'ack-grep -f %s'
+endif
 "
 " Autosave/load Sessions
 " http://vim.wikia.com/wiki/Go_away_and_come_back
