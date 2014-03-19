@@ -248,7 +248,7 @@ let g:syntastic_php_checkers=['php']
 " Syntastic: Check syntax when opening files
 let g:syntastic_check_on_open = 1
 "
-" Airline:
+" Airline: Enable tab line
 let g:airline#extensions#tabline#enabled = 1
 "
 " Tagbar: don't show variables
