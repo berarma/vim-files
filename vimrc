@@ -266,8 +266,6 @@ let g:ackhighlight = 1
 " ctrlp: faster file reading
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-elseif executable('ack-grep')
-  let g:ctrlp_user_command = 'ack-grep -f %s'
 endif
 "
 " Autosave/load Sessions
