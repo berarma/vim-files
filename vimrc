@@ -223,7 +223,7 @@ nmap <F5> :bp<CR>
 nmap <F6> :bn<CR>
 "
 " Link navigation
-map  <F9> <C-]> 
+map  <F9> :tj <C-R><C-W><CR>
 "
 " Keep window position when switching buffers
 " http://stackoverflow.com/questions/4251533/vim-keep-window-position-when-switching-buffers
