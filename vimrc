@@ -161,6 +161,9 @@ map Y y$
 "------------------------------------------------------------
 
 "
+" Set default encoding
+set encoding=utf-8
+"
 " Init Pathogen
 source ~/.vim/bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
