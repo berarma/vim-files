@@ -192,16 +192,12 @@ set path=.,,
 " Incremental searches
 set incsearch
 "
-" Don't autowrap, don't put commend leader automatically
-set formatoptions-=r
-set formatoptions-=o
-set formatoptions-=t
-"
-" Set text width
-" set tw=79
-"
-" Set color column marker
-" set cc=+1
+" Set wrapping options per file type
+augroup filtetypesettings
+  au!
+  au Filetype php setlocal fo-=w fo-=b fo+=l tw=0
+  au Filetype java setlocal fo-=w fo-=b fo+=l tw=98 cc=+2
+augroup END
 "
 " Change what's saved in sessions
 set sessionoptions=blank,buffers,folds,help,tabpages,winsize
