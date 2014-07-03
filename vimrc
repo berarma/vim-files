@@ -217,6 +217,13 @@ set lazyredraw
 " Set relative line numbering
 set rnu
 "
+" Switch for relative line numbering
+if version >= 704
+  nmap <silent> <F4> :set rnu!<CR>
+else
+  nmap <silent> <F4> :exec &rnu? "se nu" : "se rnu"<CR>
+endif
+"
 " Buffer navigation
 nmap <F5> :bp<CR>
 nmap <F6> :bn<CR>
