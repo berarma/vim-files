@@ -311,4 +311,6 @@ au VimEnter * nested :call LoadSession()
 au VimLeave * :call UpdateSession()
 "
 " Load .vimrc.local
-runtime ~/.vimrc.local
+if filereadable(glob("~/.vimrc.local")) 
+	source ~/.vimrc.local
+endif
