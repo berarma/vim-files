@@ -260,6 +260,14 @@ let g:syntastic_check_on_open = 1
 " Airline: Enable tab line
 let g:airline#extensions#tabline#enabled = 1
 "
+" Airline: Enable powerline fonts
+" Needs package fonts-powerline installed
+"let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+"
 " Tagbar: don't show variables
 let g:tagbar_type_php  = {
       \ 'ctagstype' : 'php',
