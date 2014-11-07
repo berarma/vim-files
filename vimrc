@@ -318,6 +318,13 @@ command CreateSession call CreateSession()
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call UpdateSession()
 "
+" For use in Vim 7.3
+"set nonu
+"set rnu
+"
+" For older versions of ack-grep
+"let g:ack_default_options = " -H --nocolor --nogroup --column"
+"
 " Load .vimrc.local
 if filereadable(glob("~/.vimrc.local")) 
 	source ~/.vimrc.local
