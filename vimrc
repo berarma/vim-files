@@ -227,6 +227,11 @@ else
   nmap <silent> <F4> :exec &rnu? "se nu" : "se rnu"<CR>
 endif
 "
+" Insert mode bindings
+inoremap <M-o> <Esc>o
+inoremap <M-O> <Esc>O
+inoremap <M-a> <Esc>A
+"
 " Buffer navigation
 nmap <F5> :bp<CR>
 nmap <F6> :bn<CR>
