@@ -49,3 +49,6 @@
 [submodule "bundle/PHP-Indenting-for-VIm"]
 	path = bundle/PHP-Indenting-for-VIm
 	url = https://github.com/2072/PHP-Indenting-for-VIm
+[submodule "bundle/vim-ragtag"]
+	path = bundle/vim-ragtag
+	url = https://github.com/tpope/vim-ragtag
