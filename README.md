@@ -24,3 +24,19 @@ syntax checking.
 Install [Ack](http://beyondgrep.com/) or [Ag](http://betterthanack.com/) for
 faster searches.
 
+## matchit
+
+On Debian, `matchit` must be manually enabled. Package `vim-addon-manager` must be installed for the following commands to work.
+
+Enabling user-wide:
+
+```
+vim-addons install matchit
+```
+
+To enable system-wide:
+
+```
+vim-addons -w install matchit
+```
+
