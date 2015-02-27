@@ -211,6 +211,9 @@ set guifont=Terminus
 " Set space between lines in gui version
 set linespace=2
 "
+" Don't use the Alt key for menus in gui version
+set winaltkeys=no
+"
 " Don't redraw screen when running macros
 set lazyredraw
 "
