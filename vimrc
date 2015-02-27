@@ -236,6 +236,12 @@ map  <F9> :tj <C-R><C-W><CR>
 au BufLeave * let b:winview = winsaveview()
 au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 "
+" Set fold syntax method
+"set foldmethod=syntax
+"
+" php.vim
+"let g:php_folding = 1
+"
 " Netrw: tree style list
 let g:netrw_liststyle = 3
 "
