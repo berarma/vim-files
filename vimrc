@@ -238,11 +238,6 @@ nmap <F6> :bn<CR>
 " Link navigation
 map  <F9> :tj <C-R><C-W><CR>
 "
-" Keep window position when switching buffers
-" http://stackoverflow.com/questions/4251533/vim-keep-window-position-when-switching-buffers
-au BufLeave * let b:winview = winsaveview()
-au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-"
 " Set fold syntax method
 "set foldmethod=syntax
 "
@@ -296,6 +291,32 @@ let g:ackhighlight = 1
 " ctrlp: faster file reading
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+"
+" From http://vim.wikia.com/wiki/Avoid_scrolling_when_switch_buffers
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
 endif
 "
 " Autosave/load Sessions
