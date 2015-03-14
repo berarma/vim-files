@@ -214,6 +214,10 @@ set linespace=2
 " Don't use the Alt key for menus in gui version
 set winaltkeys=no
 "
+" Remove menu and toolbar
+set guioptions-=m
+set guioptions-=T
+"
 " Don't redraw screen when running macros
 set lazyredraw
 "
