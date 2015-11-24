@@ -287,6 +287,9 @@ nmap <F8> :TagbarToggle<CR>
 "
 " Ack: highlight search term
 let g:ackhighlight = 1
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
 "
 " ctrlp: faster file reading
 if executable('ag')
