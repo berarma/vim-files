@@ -192,18 +192,11 @@ set path=.,,
 " Incremental searches
 set incsearch
 "
-" Set wrapping options per file type
-augroup filtetypesettings
-  au!
-  au Filetype php setlocal fo-=w fo-=b fo+=l tw=0
-  au Filetype java setlocal fo-=w fo-=b fo+=l tw=98 cc=+2
-augroup END
+" Set PHP folding
+let g:php_folding=1
 "
 " Change what's saved in sessions
 set sessionoptions=blank,buffers,folds,help,tabpages,winsize
-"
-" Set help command for PHP files
-" autocmd FileType php set keywordprg=pman
 "
 " Set font for gui version
 set guifont=Terminus
@@ -237,12 +230,6 @@ nmap <F6> :bn<CR>
 "
 " Link navigation
 map  <F9> :tj <C-R><C-W><CR>
-"
-" Set fold syntax method
-"set foldmethod=syntax
-"
-" php.vim
-"let g:php_folding = 1
 "
 " Netrw: tree style list
 let g:netrw_liststyle = 3
