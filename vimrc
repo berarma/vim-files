@@ -1,355 +1,184 @@
-" URL: http://vim.wikia.com/wiki/Example_vimrc
-" Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good choice.
-"              If you're a more advanced user, building your own .vimrc based
-"              on this file is still a good idea.
+call plug#begin()
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'Konfekt/FastFold'
+Plug 'SirVer/ultisnips'
+Plug 'adoy/vim-php-refactoring-toolbox'
+Plug 'airblade/vim-gitgutter'
+Plug 'alvan/vim-php-manual'
+Plug 'chrisbra/colorizer'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'duff/vim-scratch'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'groenewege/vim-less'
+Plug 'honza/vim-snippets'
+Plug 'jparise/vim-graphql'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'branch': 'php5', 'do': 'composer install' }
+Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
+Plug 'myusuf3/numbers.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'sjl/gundo.vim'
+Plug 'townk/vim-autoclose'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tyru/open-browser.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-vdebug/vdebug'
+Plug 'vim-scripts/desert256.vim'
+Plug 'vim-scripts/phpfolding.vim', { 'for': 'php' }
+Plug 'w0rp/ale'
+call plug#end()
 
-"------------------------------------------------------------
-" Features {{{1
-"
-" These options and commands enable some very useful features in Vim, that
-" no user should have to live without.
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
-
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
 filetype indent plugin on
-
-" Enable syntax highlighting
 syntax on
+syntax sync minlines=256
 
-
-"------------------------------------------------------------
-" Must have options {{{1
-"
-" These are highly recommended options.
-
-" Vim with default settings does not allow easy switching between multiple files
-" in the same editor window. Users can use multiple split windows or multiple
-" tab pages to edit multiple files, but it is still best to enable an option to
-" allow easier switching between files.
-"
-" One such option is the 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer
-" crashes.
+set autoindent
+set background=dark
+set backspace=indent,eol,start
+set breakindent
+set complete-=i
+set confirm
+set encoding=utf-8
+set expandtab
+set foldcolumn=3
 set hidden
-
-" Note that not everyone likes working this way (with the hidden option).
-" Alternatives include using tabs or split windows instead of re-using the same
-" window as mentioned above, and/or either of the following options:
-" set confirm
-" set autowriteall
-
-" Better command-line completion
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set lazyredraw
+set list listchars=tab:▸·,eol:.,trail:·
+set noshowmode
+set nostartofline
+set notimeout ttimeoutlen=0
+set number
+set pastetoggle=<F11>
+set path=.,, " Remove extra directories from file search path
+set ruler
+set scrolloff=5
+set shiftwidth=4
+set sidescrolloff=5
+set smartcase
+set softtabstop=4
+set tabstop=4
+set undofile
+set visualbell
 set wildmenu
 
-" Show partial commands in the last line of the screen
-set showcmd
-
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
-set hlsearch
-
-" Modelines have historically been a source of security vulnerabilities. As
-" such, it may be a good idea to disable them and use the securemodelines
-" script, <http://www.vim.org/scripts/script.php?script_id=1876>.
-" set nomodeline
-
-
-"------------------------------------------------------------
-" Usability options {{{1
-"
-" These are options that users frequently set in their .vimrc. Some of them
-" change Vim's behaviour in ways which deviate from the true Vi way, but
-" which are considered to add usability. Which, if any, of these options to
-" use is very much a personal preference, but they are harmless.
-
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
-set background=dark
-
-" Allow backspacing over autoindent, line breaks and start of insert action
-set backspace=indent,eol,start
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
-
-" Stop certain movements from always going to the first character of a line.
-" While this behaviour deviates from that of Vi, it does what most users
-" coming from other editors would expect.
-set nostartofline
-
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
-" Always display the status line, even if only one window is displayed
-set laststatus=2
-
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
-
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
-
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
+" Vim settings
+set t_Co=256
 set t_vb=
 
-" Enable use of the mouse for all modes
-" set mouse=a
+" Colorscheme
+silent! colorscheme desert256
 
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-" set cmdheight=2
-
-" Display line numbers on the left
-set number
-
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
-
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
-
-
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
-
-" Indentation settings for using 2 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-
-" Indentation settings for using hard tabs for indent. Display tabs as
-" two characters wide.
-"set shiftwidth=2
-set tabstop=4
-
-
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
-
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-" nnoremap <C-L> :nohl<CR><C-L>
-
-
-"------------------------------------------------------------
-
-"
-" Set default encoding
-set encoding=utf-8
-"
-" Init Pathogen
-source ~/.vim/bundle/pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-"
-" Set 256 color mode
-set t_Co=256
-"
-" Set colorscheme
-colorscheme desert256
-"
-" Display custom space and newline chars
-set list listchars=tab:▸·,eol:.,trail:·
-"
 " Set color for special chars
 hi SpecialKey ctermfg=239 ctermbg=NONE guifg=gray30 guibg=NONE
-"
-" Highlight the current line number
-hi CursorLineNR cterm=bold
-"
-" Don't show mode in last line
-set noshowmode
-" 
-" Remove extra directories from file search path
-set path=.,,
-"
-" Incremental searches
-set incsearch
-"
-" Set PHP folding
-let g:php_folding=1
-"
-" Change what's saved in sessions
-set sessionoptions=blank,buffers,folds,help,tabpages,winsize
-"
+
 " Set font for gui version
 set guifont=Terminus
-"
+
 " Set space between lines in gui version
 set linespace=2
-"
+
 " Don't use the Alt key for menus in gui version
 set winaltkeys=no
-"
+
 " Remove menu and toolbar
-set guioptions-=m
-set guioptions-=T
-"
-" Don't redraw screen when running macros
-set lazyredraw
-"
-" Set relative line numbering
-set rnu
-"
-" Switch for relative line numbering
-if version >= 704
-  nmap <silent> <F4> :set rnu!<CR>
-else
-  nmap <silent> <F4> :exec &rnu? "se nu" : "se rnu"<CR>
-endif
-"
+set guioptions-=mT
+
 " Buffer navigation
-nmap <F5> :bp<CR>
-nmap <F6> :bn<CR>
-"
-" Link navigation
-map  <F9> :tj <C-R><C-W><CR>
-"
-" Netrw: tree style list
-let g:netrw_liststyle = 3
-"
-" Netrw: Hide dot files
-let g:netrw_list_hide='\~$,\(^\|\s\s\)\zs\.\S\+'
-"
-" Netrw: Case-insensitive sort
-let g:netrw_sort_options="i"
-"
-" indentLine: indent marker char
-let g:indentLine_char = '│'
-"
-" Syntastic: check syntax automatically
-let g:syntastic_always_populate_loc_list=1
-"
-" Syntastic: Set PHP checker
-let g:syntastic_php_checkers=['php']
-"
-" Syntastic: Check syntax when opening files
-let g:syntastic_check_on_open = 1
-"
-" Airline: Enable tab line
+nmap <S-Tab> :bp<CR>
+nmap <TAB> :bn<CR>
+
+" Set Space as leader key
+let mapleader="\<Space>"
+nnoremap <silent> <Leader><Space> :nohlsearch<CR>
+
+" Setup PHP folding
+"let g:php_folding=1
+let g:PHP_outdentphpescape = 0
+
+" Airline config
+let g:airline_highlighting_cache = 1
 let g:airline#extensions#tabline#enabled = 1
-"
-" Airline: Enable powerline fonts
-" Needs package fonts-powerline installed
-"let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
-let g:airline_symbols.space = "\ua0"
-"
-" Tagbar: don't show variables
-let g:tagbar_type_php  = {
-      \ 'ctagstype' : 'php',
-      \ 'kinds'     : [ 'i:interfaces', 'c:classes', 'd:constant definitions', 'f:functions', 'j:javascript functions:1' ]
-      \ }
-"
-" Tagbar: F8 toggles tagbar
-nmap <F8> :TagbarToggle<CR>
-"
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇ '
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" ctrlp.vim config
+let g:ctrlp_extensions = ['autoignore']
+
+" indent-guides config
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+
+" ALE config
+let g:ale_sign_column_always = 1
+let g:ale_lint_delay = 500
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_linters = {
+\ 'php': ['php'],
+\}
+inoremap <C-c> <Esc>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " Ack: highlight search term
 let g:ackhighlight = 1
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
-"
+
 " ctrlp: faster file reading
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
-"
-" From http://vim.wikia.com/wiki/Avoid_scrolling_when_switch_buffers
-" Save current view settings on a per-window, per-buffer basis.
-function! AutoSaveWinView()
-    if !exists("w:SavedBufView")
-        let w:SavedBufView = {}
-    endif
-    let w:SavedBufView[bufnr("%")] = winsaveview()
-endfunction
-" Restore current view settings.
-function! AutoRestoreWinView()
-    let buf = bufnr("%")
-    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
-        let v = winsaveview()
-        let atStartOfFile = v.lnum == 1 && v.col == 0
-        if atStartOfFile && !&diff
-            call winrestview(w:SavedBufView[buf])
-        endif
-        unlet w:SavedBufView[buf]
-    endif
-endfunction
-" When switching buffers, preserve window view.
-if v:version >= 700
-    autocmd BufLeave * call AutoSaveWinView()
-    autocmd BufEnter * call AutoRestoreWinView()
-endif
-"
-" Autosave/load Sessions
-" http://vim.wikia.com/wiki/Go_away_and_come_back
-function! CreateSession()
-  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-  if (filewritable(b:sessiondir) != 2)
-    exe 'silent !mkdir -p ' b:sessiondir
-    redraw!
-  endif
-  let g:sessionfile = b:sessiondir . '/session.vim'
-  exe "mksession! " . g:sessionfile
-endfunction
-function! UpdateSession()
-  if exists("g:sessionfile")
-    if (filewritable(g:sessionfile))
-      exe "mksession! " . g:sessionfile
-    endif
-  endif
-endfunction
-function! LoadSession()
-  if argc() == 0
-    let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-    let g:sessionfile = b:sessiondir . "/session.vim"
-    if (filereadable(g:sessionfile))
-      exe "source " . g:sessionfile
-    else
-      echo "No session loaded."
-    endif
-  endif
-endfunction
-command CreateSession call CreateSession()
-au VimEnter * nested :call LoadSession()
-au VimLeave * :call UpdateSession()
-"
-" For use in Vim 7.3
-"set nonu
-"set rnu
-"
-" For older versions of ack-grep
-"let g:ack_default_options = " -H --nocolor --nogroup --column"
-"
+
+" Tagbar: don't show variables
+let g:tagbar_type_php  = {
+      \ 'ctagstype' : 'php',
+      \ 'kinds'     : [ 'i:interfaces', 'c:classes', 'd:constant definitions', 'f:functions', 'j:javascript functions:1' ]
+      \ }
+nmap <F8> :TagbarToggle<CR>
+
+" Colorizer config
+let g:colorizer_auto_filetype='html,css,less'
+
 " Load .vimrc.local
 if filereadable(glob("~/.vimrc.local")) 
-	source ~/.vimrc.local
+    source ~/.vimrc.local
 endif

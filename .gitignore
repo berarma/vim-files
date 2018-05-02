@@ -1,3 +1,4 @@
-tags
 .netrwhist
-sessions/*
+plugged
+session
+autoload/plug.vim
