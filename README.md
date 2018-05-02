@@ -6,7 +6,15 @@ git, web development (PHP/HTML/CSS/JS). Plugin management done with
 [Plug](https://raw.githubusercontent.com/junegunn/vim-plug). Vim defaults are
 preserved as much as possible.
 
+I'm using Debian GNU/Linux 9.
+
 ## Installation
+
+Install composer:
+
+```
+sudo apt install composer
+```
 
 Clone this repository.
 
@@ -14,7 +22,7 @@ Run ```./install.sh``` to create links
 
 Run ```vim -u setup.vim``` to setup vim plugins configuration.
 
-## Dependencies
+## Linters
 
 You need to install linters compatible with [ALE](https://github.com/w0rp/ale)
 for the languages that you want.
