@@ -2,6 +2,7 @@ call plug#begin()
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'Konfekt/FastFold'
 Plug 'SirVer/ultisnips'
+Plug 'mileszs/ack.vim'
 Plug 'adoy/vim-php-refactoring-toolbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-php-manual'
