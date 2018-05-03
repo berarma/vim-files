@@ -10,10 +10,10 @@ I'm using Debian GNU/Linux 9.
 
 ## Installation
 
-Install composer:
+Install dependencies:
 
 ```
-sudo apt install composer
+sudo apt install composer php-msgpack php-json
 ```
 
 Clone this repository.
