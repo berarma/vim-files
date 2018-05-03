@@ -8,7 +8,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-php-manual'
 Plug 'chrisbra/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'duff/vim-scratch'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'groenewege/vim-less'
 Plug 'honza/vim-snippets'
@@ -16,6 +15,7 @@ Plug 'jparise/vim-graphql'
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'branch': 'php5', 'do': 'composer install' }
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
+Plug 'mtth/scratch.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'sjl/gundo.vim'
@@ -30,7 +30,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-vdebug/vdebug'
 Plug 'vim-scripts/desert256.vim'
-Plug 'vim-scripts/phpfolding.vim', { 'for': 'php' }
 Plug 'w0rp/ale'
 call plug#end()
 
@@ -53,6 +52,7 @@ set confirm
 set encoding=utf-8
 set expandtab
 set foldcolumn=3
+set foldlevelstart=1
 set hidden
 set hlsearch
 set ignorecase
@@ -108,7 +108,7 @@ let mapleader="\<Space>"
 nnoremap <silent> <Leader><Space> :nohlsearch<CR>
 
 " Setup PHP folding
-"let g:php_folding=1
+let g:php_folding=1
 let g:PHP_outdentphpescape = 0
 
 " Airline config
