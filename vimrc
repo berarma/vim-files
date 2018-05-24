@@ -71,7 +71,7 @@ set number
 set pastetoggle=<F11>
 set path=.,, " Remove extra directories from file search path
 set ruler
-set scrolloff=5
+set scrolloff=2
 set shiftwidth=4
 set sidescrolloff=5
 set smartcase
