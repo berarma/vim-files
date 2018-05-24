@@ -1,7 +1,9 @@
 call plug#begin()
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'Konfekt/FastFold'
-Plug 'SirVer/ultisnips'
+if has('python3')
+    Plug 'SirVer/ultisnips'
+endif
 Plug 'mileszs/ack.vim'
 Plug 'adoy/vim-php-refactoring-toolbox'
 Plug 'airblade/vim-gitgutter'
@@ -28,7 +30,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tyru/open-browser.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-vdebug/vdebug'
+if has('python3')
+    Plug 'vim-vdebug/vdebug'
+endif
 Plug 'vim-scripts/desert256.vim'
 Plug 'w0rp/ale'
 call plug#end()
