@@ -82,14 +82,16 @@ set visualbell
 set wildmenu
 
 " Vim settings
-set t_Co=256
 set t_vb=
 
 " Colorscheme
 silent! colorscheme desert256
 
-" Set color for special chars
-hi SpecialKey ctermfg=239 ctermbg=NONE guifg=gray30 guibg=NONE
+" Set color for tabs
+" vim
+hi SpecialKey ctermfg=237 ctermbg=NONE guifg=gray30 guibg=NONE
+" nvim
+hi WhiteSpace ctermfg=237 ctermbg=NONE guifg=gray30 guibg=NONE
 
 " Set font for gui version
 set guifont=Terminus
@@ -149,6 +151,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
+let g:indent_guides_tab_guides = 0
 
 " ALE config
 let g:ale_sign_column_always = 1
