@@ -116,6 +116,10 @@ nnoremap <silent> <Leader><Space> :nohlsearch<CR>
 " Setup PHP folding
 let g:php_folding=1
 let g:PHP_outdentphpescape = 0
+let g:PHP_noArrowMatching = 1
+
+" Don't load NetRW plugin
+let loaded_netrwPlugin = 1
 
 " Airline config
 let g:airline_highlighting_cache = 1
