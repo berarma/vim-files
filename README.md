@@ -1,6 +1,8 @@
 vim-files
 =========
 
+**WARNING: This has been superseded by my [dotfiles](https://github.com/berarma/dotfiles) and is not longer updated.**
+
 My Vim config files. Mostly oriented to working with software projects using
 git, web development (PHP/HTML/CSS/JS). Plugin management done with
 [Plug](https://raw.githubusercontent.com/junegunn/vim-plug). Vim defaults are
